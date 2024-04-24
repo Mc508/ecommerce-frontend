@@ -1,4 +1,4 @@
-import { newCoupon } from './../../../backend/src/controllers/payment';
+
 export type User = {
   name: string;
   email: string;
