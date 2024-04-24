@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
@@ -13,7 +14,7 @@ const { last12Months: months } = getLastMonths();
 const Linecharts = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, data, error, isError } = useLineQuery(user?._id);
+  const { isLoading, data, error, isError } = useLineQuery(user?._id!);
 
   const products = data?.charts.products || [];
   const users = data?.charts.users || [];

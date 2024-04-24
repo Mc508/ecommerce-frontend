@@ -1,3 +1,4 @@
+import { newCoupon } from './../../../backend/src/controllers/payment';
 export type User = {
   name: string;
   email: string;
@@ -22,6 +23,11 @@ export type Coupon = {
   coupon: string;
   amount: number;
 };
+
+export type newCoupon={
+  coupon: string;
+  amount: number;
+}
 
 export type RowData={
   coupon: string;

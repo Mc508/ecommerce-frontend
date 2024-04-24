@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -49,7 +50,7 @@ const column: Column<DataType>[] = [
 const Orders = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
  const isAdmin = user?.role === "admin"; 
-  const { isLoading, data, isError, error } = useMyOrdersQuery(user?._id);
+  const { isLoading, data, isError, error } = useMyOrdersQuery(user?._id!);
 
   const [rows, setRows] = useState<DataType[]>([]);
 

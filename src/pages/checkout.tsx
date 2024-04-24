@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import {
   Elements,
   PaymentElement,
@@ -53,7 +54,7 @@ const CheckOutForm = () => {
       discount,
       shippingCharges,
       total,
-      user: user?._id
+      user: user?._id!
     };
 
     const { paymentIntent, error } = await stripe.confirmPayment({

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FormEvent, ReactElement, useEffect, useState } from "react";
@@ -48,13 +49,13 @@ const Coupon = () => {
 
     const deleteHandler = async (id:string) => {
     const res = await deleteCoupon({
-      userId: user?._id,
+      userId: user?._id!,
       couponId: id
     });
     responseToast(res, navigate, "/admin/app/coupon");
   }
 
-  const { isLoading, isError, error, data } = useAllCouponsQuery(user?._id);
+  const { isLoading, isError, error, data } = useAllCouponsQuery(user?._id!);
   const [rows, setRows] = useState<DataType[]>([]);
 
   if (isError) {
@@ -90,9 +91,9 @@ const Coupon = () => {
     if(!coupon || !amount)return console.log(" coupon is not" );
     const data = {
      "coupon": coupon,
-    "amount": amount
+      "amount": amount
   }
-    const res = await newCoupon({ id: user?._id,data });
+    const res = await newCoupon({ id: user?._id!, data });
     console.log(res);
     responseToast(res, navigate, "/admin/app/coupon");
   
@@ -102,10 +103,12 @@ const Coupon = () => {
     <div className="admin-container">
       <AdminSidebar />
       <main className="dashboard-app-container">
-        <h1>Coupon</h1>
         <section>
           <form className="coupon-form" onSubmit={submitHandler}>
-            <label>Coupon
+        <h1>Create Coupon</h1>
+            <div>
+
+            <label>Coupon</label>
             <input
               required
               type="text"
@@ -113,9 +116,11 @@ const Coupon = () => {
               value={coupon}
               onChange={(e) => setCoupon(e.target.value)}
               />
-              </label>
-              <label>Amount
+              
+              </div>
 
+              <div>
+              <label>Amount</label>
             <input
               required
               type="number"
@@ -123,7 +128,8 @@ const Coupon = () => {
               value={amount}
               onChange={(e) => setAmount(Number(e.target.value))}
               />
-              </label>
+              
+              </div>
             <button type="submit">Generate</button>
           </form>
 

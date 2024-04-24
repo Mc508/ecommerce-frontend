@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -15,12 +16,12 @@ import { responseToast } from "../../../utils/features";
 const Productmanagement = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const params = useParams();
+  const params = useParams<{id:string}>();
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useProductDetailsQuery(params.id!);
-
-  const { price, photo, name,desc, stock, category } = data?.product || {
+  const { data, isLoading, isError } = useProductDetailsQuery(params.id||'');
+  
+  const { price, photo, name,desc, stock, category } = data?.product ||  {
     photo: "",
     category: "",
     name: "",
@@ -71,8 +72,8 @@ const Productmanagement = () => {
 
     const res = await updateProduct({
       formData,
-      userId: user._id,
-      productId: data.product._id
+      userId: user?._id!,
+      productId: data?.product?._id || ""
     });
 
     responseToast(res, navigate, "/admin/product");
@@ -80,8 +81,8 @@ const Productmanagement = () => {
 
   const deleteHandler = async () => {
     const res = await deleteProduct({
-      userId: user._id,
-      productId: data.product._id
+      userId: user?._id!,
+      productId: data?.product?._id || ""
     });
 
     responseToast(res, navigate, "/admin/product");

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
@@ -50,7 +51,7 @@ const columns: Column<DataType>[] = [
 const Products = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, isError, error, data } = useAllProductsQuery(user?._id);
+  const { isLoading, isError, error, data } = useAllProductsQuery(user?._id!);
 
   const [rows, setRows] = useState<DataType[]>([]);
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
@@ -53,14 +54,14 @@ const columns: Column<DataType>[] = [
 const Customers = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, data, isError, error } = useAllUsersQuery(user?._id);
+  const { isLoading, data, isError, error } = useAllUsersQuery(user?._id!);
 
   const [rows, setRows] = useState<DataType[]>([]);
 
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (userId: string) => {
-    const res = await deleteUser({ userId, adminUserId: user?._id });
+    const res = await deleteUser({ userId, adminUserId: user?._id! });
     responseToast(res, null, "");
   };
 

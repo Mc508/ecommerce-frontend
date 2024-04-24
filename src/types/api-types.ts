@@ -9,6 +9,7 @@ import {
   Stats,
   User,
   Coupon,
+  newCoupon,
 } from "./types";
 
 export type CustomError = {
@@ -128,7 +129,7 @@ export type DeleteUserRequest = {
 
 export type NewCouponRequest = {
   id: string;
-  data: Coupon;
+  data: newCoupon;
 };
 export type AllCouponsResponse = {
   success: boolean;

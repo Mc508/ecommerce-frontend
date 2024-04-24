@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { Link } from "react-router-dom";
 import {
   FaSearch,
@@ -53,7 +54,7 @@ const Header = ({ user }: PropsType) => {
         <span>{total}</span>
       </Link>
 
-      {user?._id ? (
+      {user?._id! ? (
         <>
           <button onClick={() => setIsOpen((prev) => !prev)}>
             {user.photo ? (

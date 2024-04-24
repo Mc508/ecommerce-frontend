@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
@@ -56,7 +57,7 @@ const TransactionManagement = () => {
 
   const updateHandler = async () => {
     const res = await updateOrder({
-      userId: user?._id,
+      userId: user?._id!,
       orderId: data?.order._id
     });
     responseToast(res, navigate, "/admin/transaction");
@@ -64,7 +65,7 @@ const TransactionManagement = () => {
 
   const deleteHandler = async () => {
     const res = await deleteOrder({
-      userId: user?._id,
+      userId: user?._id!,
       orderId: data?.order._id
     });
     responseToast(res, navigate, "/admin/transaction");
