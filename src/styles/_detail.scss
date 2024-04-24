@@ -1,0 +1,93 @@
+.product-detail {
+  margin: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; /* Change to column layout on smaller screens */
+  max-width: 100%; /* Adjust as needed */
+  max-height: 100%; /* Adjust as needed */
+
+  @media (min-width: 768px) {
+    flex-direction: row; /* Switch back to row layout on larger screens */
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.product-image {
+  width: 100%; /* Take full width on smaller screens */
+  margin-top: 30px;
+
+  img {
+    width: 100%; /* Take full width of container */
+    height: auto; /* Maintain aspect ratio */
+    min-width: 250px; /* Adjust as needed */
+    min-height: 250px; /* Adjust as needed */
+    object-fit: cover; /* Adjusts the image to cover its entire container */
+    margin: auto; /* Center the image */
+  }
+  img:hover{
+  transform: scale(1.5); /* Adjust magnification scale as needed */
+  z-index: 999;
+  padding:2rem;
+  margin-top: 2rem;
+}
+
+  @media (min-width: 768px) {
+    width: 40%; /* Adjust as needed */
+    margin-left: 0; /* Remove left margin */
+    margin-top: 0; /* Remove top margin */
+  }
+}
+
+.product-desc {
+  width: 100%; /* Take full width on smaller screens */
+  margin-top: 30px;
+
+  span {
+    font-size: 24px; /* Adjust as needed */
+    margin-top: 1rem;
+  }
+
+  h1 {
+    font-size: 32px; /* Adjust as needed */
+    margin-top: 1rem;
+  }
+
+  p {
+    font-size: 18px; /* Adjust as needed */
+    line-height: 1.5;
+    margin-top: 1rem;
+  }
+
+  button {
+    // width: 50px; /* Adjust button size */
+    // height: 50px; /* Adjust button size */
+    // font-size: 1.2rem;
+    // margin-top: 1rem;
+    @include flex;
+    @include square(3rem);
+    border-radius: 100%;
+    border: none;
+    background-color: #181434;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    &:hover{
+      rotate:360deg;
+      color:aqua;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 50%; /* Adjust as needed */
+    margin-top: 0; /* Remove top margin */
+  }
+}
+
+.search-product-list {
+  @include flex(row, flex-start, flex-start);
+  flex-wrap: wrap;
+  height: calc(100% - 10rem);
+  overflow-y: auto;
+}
